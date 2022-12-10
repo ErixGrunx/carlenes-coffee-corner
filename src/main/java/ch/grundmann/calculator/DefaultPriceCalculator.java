@@ -1,4 +1,4 @@
-package ch.grundmann.calcualtor;
+package ch.grundmann.calculator;
 
 import ch.grundmann.CarlenesCoffeeCornerPriceListMain;
 import ch.grundmann.product.CoffeeCornerProduct;

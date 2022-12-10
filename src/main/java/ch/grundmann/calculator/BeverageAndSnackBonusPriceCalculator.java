@@ -1,4 +1,4 @@
-package ch.grundmann.calcualtor;
+package ch.grundmann.calculator;
 
 import java.util.Comparator;
 import java.util.List;

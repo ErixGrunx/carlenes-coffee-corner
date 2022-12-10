@@ -1,4 +1,4 @@
-package ch.grundmann.calcualtor;
+package ch.grundmann.calculator;
 
 import ch.grundmann.product.BaconRoll;
 import ch.grundmann.product.Coffee;

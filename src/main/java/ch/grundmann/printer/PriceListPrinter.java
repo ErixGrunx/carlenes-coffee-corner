@@ -1,7 +1,7 @@
 package ch.grundmann.printer;
 
 import ch.grundmann.CarlenesCoffeeCornerPriceListMain;
-import ch.grundmann.calcualtor.ProductPriceItem;
+import ch.grundmann.calculator.ProductPriceItem;
 
 import java.util.List;
 import java.util.Locale;

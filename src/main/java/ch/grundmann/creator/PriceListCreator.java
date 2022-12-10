@@ -1,6 +1,6 @@
 package ch.grundmann.creator;
 
-import ch.grundmann.calcualtor.PriceListCalculator;
+import ch.grundmann.calculator.PriceListCalculator;
 import ch.grundmann.printer.PriceListPrinter;
 import ch.grundmann.product.CoffeeCornerProduct;
 

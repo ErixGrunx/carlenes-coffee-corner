@@ -1,6 +1,6 @@
 package ch.grundmann.printer;
 
-import ch.grundmann.CarlenesCoffeeCornerPriceListMain;
+import ch.grundmann.CharlenesCoffeeCornerPriceListMain;
 import ch.grundmann.calculator.ProductPriceItem;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import static java.util.logging.Level.INFO;
 
 public class PriceListPrinter {
 
-    private static final Logger logger = Logger.getLogger(CarlenesCoffeeCornerPriceListMain.class.getName());
+    private static final Logger logger = Logger.getLogger(CharlenesCoffeeCornerPriceListMain.class.getName());
 
     public String print(List<ProductPriceItem> productPriceItemList) {
         logger.log(INFO, "Generate printable price list.");

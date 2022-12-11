@@ -1,6 +1,6 @@
 package ch.grundmann.calculator;
 
-import ch.grundmann.CarlenesCoffeeCornerPriceListMain;
+import ch.grundmann.CharlenesCoffeeCornerPriceListMain;
 import ch.grundmann.product.CoffeeCornerProduct;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import static java.util.logging.Level.INFO;
 
 class DefaultPriceCalculator {
 
-    private static final Logger logger = Logger.getLogger(CarlenesCoffeeCornerPriceListMain.class.getName());
+    private static final Logger logger = Logger.getLogger(CharlenesCoffeeCornerPriceListMain.class.getName());
 
     List<ProductPriceItem> calculate(List<CoffeeCornerProduct> productList) {
         logger.log(INFO, "Calculate product prices.");

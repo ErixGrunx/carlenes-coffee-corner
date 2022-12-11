@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.INFO;
 
-public class CarlenesCoffeeCornerPriceListMain {
+public class CharlenesCoffeeCornerPriceListMain {
 
-    private static final Logger logger = Logger.getLogger(CarlenesCoffeeCornerPriceListMain.class.getName());
+    private static final Logger logger = Logger.getLogger(CharlenesCoffeeCornerPriceListMain.class.getName());
 
     public static void main(String[] args) {
         logger.log(INFO, "Generate printable price list.");

@@ -9,19 +9,20 @@ import java.util.Scanner;
 
 public class CharlenesCoffeeCornerReceiptMain {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        var in = new Scanner(System.in);
         System.out.println("Welcome to Charlene's coffee corner");
         List<CoffeeCornerProduct> productList = new ArrayList<>();
         var stopOrder = false;
         while (!stopOrder) {
             System.out.println("Press 1 for coffee, 2 for orange juice or 3 for bacon roll: ");
-            var product = in.nextLine();
+            var product = scanner.nextLine();
             if ("1".equals(product)) {
                 System.out.println("Press 1 for large, 2 for middle or 3 for small: ");
-                var coffeeSize = mapToCoffeeSizePrice(in.nextLine());
+                var coffeeSize = mapToCoffeeSizePrice(scanner.nextLine());
                 System.out.println("Press 1 for extra milk, 2 for foamed milk, 3 for special roast coffee or 4 for no extras: ");
-                var coffeeExtra = mapToCoffeeExtraPrice(in.nextLine());
+                var coffeeExtra = mapToCoffeeExtraPrice(scanner.nextLine());
                 productList.add(new Coffee(coffeeSize, coffeeExtra));
             } else if ("2".equals(product)) {
                 productList.add(new OrangeJuice());
@@ -29,7 +30,7 @@ public class CharlenesCoffeeCornerReceiptMain {
                 productList.add(new BaconRoll());
             }
             System.out.println("Press y to continue, press any key to finish order: ");
-            stopOrder = !"y".equals(in.nextLine());
+            stopOrder = !"y".equals(scanner.nextLine());
         }
 
         var receipt = new ReceiptCreator().create(productList);
@@ -47,7 +48,8 @@ public class CharlenesCoffeeCornerReceiptMain {
             coffeeSize = CoffeeSizePrice.LARGE;
         } else {
             coffeeSize = CoffeeSizePrice.MEDIUM;
-        } return coffeeSize;
+        }
+        return coffeeSize;
     }
 
 

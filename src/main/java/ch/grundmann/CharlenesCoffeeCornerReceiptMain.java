@@ -13,6 +13,12 @@ public class CharlenesCoffeeCornerReceiptMain {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Charlene's coffee corner");
+        var productList = getProductListUserInput();
+        var receipt = new ReceiptCreator().create(productList);
+        System.out.println(receipt);
+    }
+
+    private static List<CoffeeCornerProduct> getProductListUserInput() {
         List<CoffeeCornerProduct> productList = new ArrayList<>();
         var stopOrder = false;
         while (!stopOrder) {
@@ -32,9 +38,7 @@ public class CharlenesCoffeeCornerReceiptMain {
             System.out.println("Press y to continue, press any key to finish order: ");
             stopOrder = !"y".equals(scanner.nextLine());
         }
-
-        var receipt = new ReceiptCreator().create(productList);
-        System.out.println(receipt);
+        return productList;
     }
 
 

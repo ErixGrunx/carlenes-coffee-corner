@@ -9,29 +9,29 @@ import static ch.grundmann.product.ProductType.BEVERAGE;
 import static ch.grundmann.product.ProductType.SNACK;
 import static java.util.logging.Level.INFO;
 
-public class PriceListCalculator {
+public class ReceiptCalculator {
 
-    private static final Logger logger = Logger.getLogger(PriceListCalculator.class.getName());
+    private static final Logger logger = Logger.getLogger(ReceiptCalculator.class.getName());
 
     private final DefaultPriceCalculator defaultPriceCalculator;
     private final BeverageAndSnackBonusPriceCalculator beverageAndSnackBonusPriceCalculator;
     private final FifthBeverageFreeBonusPriceCalculator fifthBeverageFreeBonusPriceCalculator;
 
-    public PriceListCalculator() {
+    public ReceiptCalculator() {
         this.defaultPriceCalculator = new DefaultPriceCalculator();
         beverageAndSnackBonusPriceCalculator = new BeverageAndSnackBonusPriceCalculator();
         fifthBeverageFreeBonusPriceCalculator = new FifthBeverageFreeBonusPriceCalculator();
     }
 
-    public List<ProductPriceItem> createPriceList(List<CoffeeCornerProduct> productList) {
-        return createPriceList(productList, false);
+    public List<ProductPriceItem> createReceipt(List<CoffeeCornerProduct> productList) {
+        return createReceipt(productList, false);
     }
 
-    public List<ProductPriceItem> createPriceListWithFreeBeverage(List<CoffeeCornerProduct> productList) {
-        return createPriceList(productList, true);
+    public List<ProductPriceItem> createReceiptWithFreeBeverage(List<CoffeeCornerProduct> productList) {
+        return createReceipt(productList, true);
     }
 
-    private List<ProductPriceItem> createPriceList(List<CoffeeCornerProduct> productList, boolean isFreeBeverage) {
+    private List<ProductPriceItem> createReceipt(List<CoffeeCornerProduct> productList, boolean isFreeBeverage) {
         if (productList == null) {
             throw new NullPointerException("Product list must not be null.");
         }

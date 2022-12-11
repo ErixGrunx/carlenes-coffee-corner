@@ -1,13 +1,13 @@
 package ch.grundmann;
 
-import ch.grundmann.creator.PriceListCreator;
+import ch.grundmann.creator.ReceiptCreator;
 import ch.grundmann.product.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CharlenesCoffeeCornerPriceListMain {
+public class CharlenesCoffeeCornerReceiptMain {
 
     public static void main(String[] args) {
         var in = new Scanner(System.in);
@@ -32,8 +32,8 @@ public class CharlenesCoffeeCornerPriceListMain {
             stopOrder = !"y".equals(in.nextLine());
         }
 
-        var priceList = new PriceListCreator().create(productList);
-        System.out.println(priceList);
+        var receipt = new ReceiptCreator().create(productList);
+        System.out.println(receipt);
     }
 
 

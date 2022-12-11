@@ -13,12 +13,10 @@ public class ReceiptCalculator {
 
     private static final Logger logger = Logger.getLogger(ReceiptCalculator.class.getName());
 
-    private final DefaultPriceCalculator defaultPriceCalculator;
     private final BeverageAndSnackBonusPriceCalculator beverageAndSnackBonusPriceCalculator;
     private final FifthBeverageFreeBonusPriceCalculator fifthBeverageFreeBonusPriceCalculator;
 
     public ReceiptCalculator() {
-        this.defaultPriceCalculator = new DefaultPriceCalculator();
         beverageAndSnackBonusPriceCalculator = new BeverageAndSnackBonusPriceCalculator();
         fifthBeverageFreeBonusPriceCalculator = new FifthBeverageFreeBonusPriceCalculator();
     }
@@ -40,7 +38,10 @@ public class ReceiptCalculator {
         }
         logger.log(INFO, "Start to create price list.");
 
-        var productPriceItemList = defaultPriceCalculator.calculate(productList);
+        var productPriceItemList = productList.stream()
+                .map(it -> new ProductPriceItem(it.getName(), it.getPrice(), it.getProductType()))
+                .toList();
+
         var beverages = getBeverages(productPriceItemList);
         var snacks = getSnacks(productPriceItemList);
 

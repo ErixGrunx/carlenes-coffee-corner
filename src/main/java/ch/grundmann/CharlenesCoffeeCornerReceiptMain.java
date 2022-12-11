@@ -26,7 +26,7 @@ public class CharlenesCoffeeCornerReceiptMain {
             } else if ("2".equals(product)) {
                 productList.add(new OrangeJuice());
             } else if ("3".equals(product)) {
-                productList.add(new OrangeJuice());
+                productList.add(new BaconRoll());
             }
             System.out.println("Press y to continue, press any key to finish order: ");
             stopOrder = !"y".equals(in.nextLine());

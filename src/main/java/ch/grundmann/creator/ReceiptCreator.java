@@ -1,6 +1,7 @@
 package ch.grundmann.creator;
 
 import ch.grundmann.calculator.ReceiptCalculator;
+import ch.grundmann.calculator.StampCard;
 import ch.grundmann.printer.PriceListPrinter;
 import ch.grundmann.product.CoffeeCornerProduct;
 
@@ -15,13 +16,8 @@ public class ReceiptCreator {
         this.receiptPrinter = new PriceListPrinter();
     }
 
-    public String create(List<CoffeeCornerProduct> coffeeCornerProductList) {
-        var receipt = receiptCalculator.createReceipt(coffeeCornerProductList);
-        return receiptPrinter.print(receipt);
-    }
-
-    public String createWithFreeBeverage(List<CoffeeCornerProduct> coffeeCornerProductList) {
-        var receipt = receiptCalculator.createReceiptWithFreeBeverage(coffeeCornerProductList);
+    public String create(List<CoffeeCornerProduct> coffeeCornerProductList, StampCard stampCard) {
+        var receipt = receiptCalculator.createReceipt(coffeeCornerProductList, stampCard);
         return receiptPrinter.print(receipt);
     }
 }

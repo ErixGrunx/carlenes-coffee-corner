@@ -10,20 +10,19 @@ class FifthBeverageFreeBonusPriceCalculator {
     private static final Logger logger = Logger.getLogger(FifthBeverageFreeBonusPriceCalculator.class.getName());
     private static final int FIFTH_ELEMENT = 5;
 
-    void apply(List<ProductPriceItem> beverages, boolean isFirstFree) {
+    void apply(List<ProductPriceItem> beverages, StampCard stampCard) {
         logger.log(INFO, "Apply bonus program to every non free fifth beverage.");
 
-        if (isFirstFree) {
-            var productPriceItem = beverages.get(0);
-            productPriceItem.setPrice(0.f);
-            productPriceItem.setName(productPriceItem.getName() + "(fifth beverage is free)");
-        }
-
-        for (var i = 1; i < beverages.size(); i++) {
-            if (i % FIFTH_ELEMENT == 0) {
+        for (var i = 1; i <= beverages.size(); i++) {
+            stampCard.setCount(stampCard.getCount() + 1);
+            if (stampCard.getCount() % FIFTH_ELEMENT == 0) {
                 var fifthBeverage = beverages.get(i - 1);
                 fifthBeverage.setPrice(0f);
                 fifthBeverage.setName(String.format("%s (fifth beverage is free)", fifthBeverage.getName()));
+                var newCount = stampCard.getCount() - FIFTH_ELEMENT;
+                if (newCount >= 0) {
+                    stampCard.setCount(newCount);
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ class ReceiptCalculatorTest {
     @Test
     void createReceiptWithOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new OrangeJuice());
-        var receipt = receiptCalculator.createReceipt(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a"));
 
         assertEquals(1, receipt.size());
         assertEquals("Orange juice", receipt.get(0).getName());
@@ -32,16 +32,16 @@ class ReceiptCalculatorTest {
     @Test
     void createReceiptWithFreeBeverageOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new OrangeJuice());
-        var receipt = receiptCalculator.createReceiptWithFreeBeverage(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a", 4));
 
         assertEquals(1, receipt.size());
-        assertEquals("Orange juice(fifth beverage is free)", receipt.get(0).getName());
+        assertEquals("Orange juice (fifth beverage is free)", receipt.get(0).getName());
     }
 
     @Test
     void createReceiptWithCoffee() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee());
-        var receipt = receiptCalculator.createReceipt(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a"));
 
         assertEquals(1, receipt.size());
         assertEquals("Coffee medium", receipt.get(0).getName());
@@ -50,16 +50,16 @@ class ReceiptCalculatorTest {
     @Test
     void createReceiptWithFreeBeverageCoffee() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee());
-        var receipt = receiptCalculator.createReceiptWithFreeBeverage(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a", 4));
 
         assertEquals(1, receipt.size());
-        assertEquals("Coffee medium(fifth beverage is free)", receipt.get(0).getName());
+        assertEquals("Coffee medium (fifth beverage is free)", receipt.get(0).getName());
     }
 
     @Test
     void createReceiptWithCoffeeAndOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(), new OrangeJuice());
-        var receipt = receiptCalculator.createReceipt(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a"));
 
         assertEquals(2, receipt.size());
         assertEquals("Coffee medium", receipt.get(0).getName());
@@ -69,17 +69,17 @@ class ReceiptCalculatorTest {
     @Test
     void createReceiptWithFreeBeverageCoffeeAndOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(), new OrangeJuice());
-        var receipt = receiptCalculator.createReceiptWithFreeBeverage(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a", 4));
 
         assertEquals(2, receipt.size());
-        assertEquals("Coffee medium(fifth beverage is free)", receipt.get(0).getName());
+        assertEquals("Coffee medium (fifth beverage is free)", receipt.get(0).getName());
         assertEquals("Orange juice", receipt.get(1).getName());
     }
 
     @Test
     void createReceiptWithCoffeeAndBaconRoll() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(), new BaconRoll());
-        var receipt = receiptCalculator.createReceipt(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a"));
 
         assertEquals(2, receipt.size());
         assertEquals("Coffee medium (extra free)", receipt.get(0).getName());
@@ -89,10 +89,10 @@ class ReceiptCalculatorTest {
     @Test
     void createReceiptWithFreeBeverageCoffeeAndBaconRoll() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(), new BaconRoll());
-        var receipt = receiptCalculator.createReceiptWithFreeBeverage(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a", 4));
 
         assertEquals(2, receipt.size());
-        assertEquals("Coffee medium(fifth beverage is free)", receipt.get(0).getName());
+        assertEquals("Coffee medium (fifth beverage is free)", receipt.get(0).getName());
         assertEquals("Bacon roll", receipt.get(1).getName());
     }
 
@@ -105,7 +105,7 @@ class ReceiptCalculatorTest {
                 new Coffee(),
                 new Coffee(),
                 new Coffee());
-        var receipt = receiptCalculator.createReceipt(productList);
+        var receipt = receiptCalculator.createReceipt(productList, new StampCard("a"));
 
         assertEquals(6, receipt.size());
         assertEquals("Coffee medium", receipt.get(0).getName());

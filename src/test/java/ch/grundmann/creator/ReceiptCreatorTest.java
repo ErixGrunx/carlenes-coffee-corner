@@ -1,6 +1,7 @@
 package ch.grundmann.creator;
 
 
+import ch.grundmann.calculator.StampCard;
 import ch.grundmann.product.BaconRoll;
 import ch.grundmann.product.Coffee;
 import ch.grundmann.product.CoffeeCornerProduct;
@@ -26,7 +27,7 @@ class ReceiptCreatorTest {
     @Test
     public void testOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new OrangeJuice());
-        var receipt = receiptCreator.create(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a"));
 
         assertTrue(receipt.contains("3.95 CHF"), "Actual print:" + receipt);
     }
@@ -34,15 +35,15 @@ class ReceiptCreatorTest {
     @Test
     public void testFreeOrangeJuice() {
         List<CoffeeCornerProduct> productList = List.of(new OrangeJuice());
-        var receipt = receiptCreator.createWithFreeBeverage(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a", 4));
 
-        assertTrue(receipt.contains("Orange juice(fifth beverage is free): 0.00 CHF"), "Actual print:" + receipt);
+        assertTrue(receipt.contains("Orange juice (fifth beverage is free): 0.00 CHF"), "Actual print:" + receipt);
     }
 
     @Test
     public void testCoffee1() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee());
-        var receipt = receiptCreator.create(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a"));
 
         assertTrue(receipt.contains("3.00 CHF"), "Actual print:" + receipt);
     }
@@ -50,7 +51,7 @@ class ReceiptCreatorTest {
     @Test
     public void testCoffee2() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(MEDIUM, EXTRA_MILK));
-        var receipt = receiptCreator.create(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a"));
 
         assertTrue(receipt.contains("3.30 CHF"), "Actual print:" + receipt);
     }
@@ -58,7 +59,7 @@ class ReceiptCreatorTest {
     @Test
     public void testFreeCoffee() {
         List<CoffeeCornerProduct> productList = List.of(new Coffee(MEDIUM, EXTRA_MILK));
-        var receipt = receiptCreator.create(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a"));
 
         assertTrue(receipt.contains("Coffee medium (extra milk): 3.30 CHF"), "Actual print:" + receipt);
     }
@@ -75,7 +76,7 @@ class ReceiptCreatorTest {
                 new OrangeJuice(),
                 new BaconRoll()
         );
-        var receipt = receiptCreator.create(productList);
+        var receipt = receiptCreator.create(productList, new StampCard("a"));
 
         assertTrue(receipt.contains("Coffee medium: 3.00 CHF"), "Actual print:" + receipt);
         assertTrue(receipt.contains("Coffee large (special roast coffee): 4.40 CHF"), "Actual print:" + receipt);
@@ -88,11 +89,61 @@ class ReceiptCreatorTest {
 
     @Test
     public void testEmptyList() {
-        assertDoesNotThrow(() -> receiptCreator.create(List.of()));
+        assertDoesNotThrow(() -> receiptCreator.create(List.of(), new StampCard("a")));
     }
 
     @Test
     public void testNullList() {
-        assertThrows(NullPointerException.class, () -> receiptCreator.create(null));
+        assertThrows(NullPointerException.class, () -> receiptCreator.create(null, new StampCard("a")));
+    }
+
+    @Test
+    public void testStampCardTwoStamps() {
+        List<CoffeeCornerProduct> productList = List.of(
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK)
+        );
+        StampCard a = new StampCard("a");
+        receiptCreator.create(productList, a);
+
+        assertEquals("a", a.getId());
+        assertEquals(2, a.getCount());
+    }
+
+    @Test
+    public void testStampCardFifeStamps() {
+        List<CoffeeCornerProduct> productList = List.of(
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK)
+        );
+        StampCard a = new StampCard("a");
+        receiptCreator.create(productList, a);
+
+        assertEquals("a", a.getId());
+        assertEquals(0, a.getCount());
+    }
+
+
+    @Test
+    public void testStampCardElevenStamps() {
+        List<CoffeeCornerProduct> productList = List.of(
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK), new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK), new Coffee(MEDIUM, EXTRA_MILK),
+                new Coffee(MEDIUM, EXTRA_MILK)
+        );
+        StampCard a = new StampCard("a");
+        receiptCreator.create(productList, a);
+
+        assertEquals("a", a.getId());
+        assertEquals(1, a.getCount());
     }
 }

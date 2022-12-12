@@ -21,22 +21,14 @@ public class ReceiptCalculator {
         fifthBeverageFreeBonusPriceCalculator = new FifthBeverageFreeBonusPriceCalculator();
     }
 
-    public List<ProductPriceItem> createReceipt(List<CoffeeCornerProduct> productList) {
-        return createReceipt(productList, false);
-    }
-
-    public List<ProductPriceItem> createReceiptWithFreeBeverage(List<CoffeeCornerProduct> productList) {
-        return createReceipt(productList, true);
-    }
-
-    private List<ProductPriceItem> createReceipt(List<CoffeeCornerProduct> productList, boolean isFreeBeverage) {
+    public List<ProductPriceItem> createReceipt(List<CoffeeCornerProduct> productList, StampCard stampCard) {
         if (productList == null) {
             throw new NullPointerException("Product list must not be null.");
         }
         if (productList.isEmpty()) {
             logger.log(INFO, "Shopping basket is empty. Please select products first.");
         }
-        logger.log(INFO, "Start to create price list.");
+        logger.log(INFO, "Start to create receipt.");
 
         var productPriceItemList = productList.stream()
                 .map(it -> new ProductPriceItem(it.getName(), it.getPrice(), it.getProductType()))
@@ -45,7 +37,7 @@ public class ReceiptCalculator {
         var beverages = getBeverages(productPriceItemList);
         var snacks = getSnacks(productPriceItemList);
 
-        fifthBeverageFreeBonusPriceCalculator.apply(beverages, isFreeBeverage);
+        fifthBeverageFreeBonusPriceCalculator.apply(beverages, stampCard);
         if (!beverages.isEmpty() && !snacks.isEmpty()) {
             beverageAndSnackBonusPriceCalculator.apply(productPriceItemList);
         }

@@ -14,9 +14,9 @@ public class PriceListPrinter {
     private static final Logger logger = Logger.getLogger(CharlenesCoffeeCornerReceiptMain.class.getName());
 
     public String print(List<ProductPriceItem> productPriceItemList) {
-        logger.log(INFO, "Generate printable price list.");
+        logger.log(INFO, "Generate printable receipt.");
 
-        var printablePriceList = new StringBuilder("\n--PRICE LIST--\n");
+        var printablePriceList = new StringBuilder("\n--RECEIPT--\n");
         printItemPrices(productPriceItemList, printablePriceList);
 
         printTotalPrice(productPriceItemList, printablePriceList);

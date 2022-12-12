@@ -1,6 +1,7 @@
 package ch.grundmann.creator;
 
 
+import ch.grundmann.ReceiptCreator;
 import ch.grundmann.calculator.StampCard;
 import ch.grundmann.product.BaconRoll;
 import ch.grundmann.product.Coffee;

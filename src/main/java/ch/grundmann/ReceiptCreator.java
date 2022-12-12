@@ -1,4 +1,4 @@
-package ch.grundmann.creator;
+package ch.grundmann;
 
 import ch.grundmann.calculator.ReceiptCalculator;
 import ch.grundmann.calculator.StampCard;

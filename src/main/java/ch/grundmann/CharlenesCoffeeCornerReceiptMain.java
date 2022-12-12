@@ -1,7 +1,6 @@
 package ch.grundmann;
 
 import ch.grundmann.calculator.StampCard;
-import ch.grundmann.creator.ReceiptCreator;
 import ch.grundmann.product.*;
 
 import java.util.*;
